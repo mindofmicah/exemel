@@ -6,6 +6,7 @@ class Property
 	protected $title;
 	protected $value;
 	protected $attributes = array();
+	protected $children = array();
 
 	public function __construct($title, $value = null, $attributes = array())
 	{
@@ -47,5 +48,32 @@ class Property
 			$ret.= sprintf('%s%s="%s"', $glue, $k, $p);
 		}		
 		return $ret;
+	}
+
+	public function append($property, $value = null, $attributes = array(), &$obj = null)
+	{
+		if ($property instanceof Property) {
+			$this->children[] = $property;
+		} else {
+			$obj = new Property($property, $value, $attributes);
+			$this->children[] = $obj;
+		}
+
+		return $this;
+	}
+	public function appendTo(Property $parent)
+	{
+		$parent->append($this);
+		return $this;				
+	}
+
+	public function __call($func, $params)
+	{
+		if (preg_match('%append_([A-z]+)%', $func, $match)) {
+//			print_r($match);
+			array_unshift($params, $match[1]);
+			return call_user_func_array(array($this, 'append'), $params);
+		}
+//		print_r(func_get_args());
 	}
 }

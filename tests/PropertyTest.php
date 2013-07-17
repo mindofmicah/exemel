@@ -12,6 +12,9 @@ class PropertyTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('', $obj->value);
 		$this->assertTrue(is_array($obj->attributes));
 		$this->assertEquals(0, count($obj->attributes));
+		$this->assertTrue(is_array($obj->children));
+		$this->assertEquals(0, count($obj->children));
+
 	}
 	public function testConstructorHasOptionalParams()
 	{
@@ -55,6 +58,39 @@ class PropertyTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('', $obj->fakeAttributes());
 	}
 
+	public function testAppendTo()
+	{
+		$root  = new MockProperty('root');
+		$child = new xml\Property('child'); 
+		$this->assertInstanceOf('exemel\Property', $child->appendTo($root));
+		$this->assertEquals($child, $root->children[0]);
+	}
+
+	public function testAppendWithObjectPassedIn()
+	{
+		$root = new MockProperty('root');
+		$child = new xml\Property('child');
+		$this->assertInstanceOf('exemel\Property', $root->append($child));
+		$this->assertEquals($child, $root->children[0]);
+	}
+	public function testAppendWithParam()
+	{
+		$root = new MockProperty('root');
+		$child = new xml\Property('child');
+
+		$this->assertInstanceOf('exemel\Property', $root->append('child', '',array(), $obj));
+		$this->assertEquals($child, $root->children[0]);
+		$this->assertEquals($child, $obj);
+	}
+
+	public function testDynamicAppend()
+	{
+		$root = new MockProperty('root');
+		$this->assertInstanceOf('exemel\Property', $root->append_child('value'));
+
+		$child = new exemel\Property('child', 'value');
+		$this->assertEquals($child, $root->children[0]);
+	}
 }
 
 class MockProperty extends xml\Property

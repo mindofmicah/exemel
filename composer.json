@@ -1,5 +1,5 @@
 {
-    "name": "mindofmicah/eXeMeL",
+    "name": "mindofmicah/exemel",
     "type": "library",
     "description": "Creating XML files on the fly!",
     "keywords": ["XML","RSS", "atom"],

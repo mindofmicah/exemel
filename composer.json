@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Creating XML files on the fly!",
     "keywords": ["XML","RSS", "atom"],
-    "homepage": "http://github.com/mindofmicah/eXeMeL",
+    "homepage": "http://github.com/mindofmicah/exemel",
     "license": "MIT",
     "authors": [
         {

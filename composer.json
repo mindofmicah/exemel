@@ -1,0 +1,22 @@
+{
+    "name": "mindofmicah/eXeMeL",
+    "type": "library",
+    "description": "Creating XML files on the fly!",
+    "keywords": ["XML","RSS", "atom"],
+    "homepage": "http://github.com/mindofmicah/eXeMeL",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Eschbacher",
+            "email": "michaeleschbacher@gmail.com",
+            "homepage": "http://michaeleschbacher.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0"
+    },
+    "autoload": {
+
+    }
+}

@@ -6,6 +6,7 @@ class Property
 	protected $title;
 	protected $value;
 	protected $attributes = array();
+
 	public function __construct($title, $value = null, $attributes = array())
 	{
 		$this->title = $title;
@@ -13,6 +14,12 @@ class Property
 		$this->attributes = $attributes;
 	}
 
+
+	/**
+ 	 * Flatten the property into a standard XML property
+	 *
+	 * @return string
+	 */
 	public function render()
 	{
 		if ($this->value) {
@@ -27,6 +34,11 @@ class Property
 		return sprintf('<%s%s />', $this->title, $this->renderAttributes());		
 	}
 
+	/**
+	 * Flattens the attribute array into a string of the format key="value"
+ 	 *
+	 * @return string
+	 */
 	protected function renderAttributes()
 	{
 		$ret = '';

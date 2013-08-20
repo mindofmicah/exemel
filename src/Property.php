@@ -76,4 +76,9 @@ class Property
 		}
 //		print_r(func_get_args());
 	}
+
+	public function getTitle()
+	{
+		return $this->title;
+	}	
 }

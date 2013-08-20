@@ -91,6 +91,13 @@ class PropertyTest extends PHPUnit_Framework_TestCase
 		$child = new exemel\Property('child', 'value');
 		$this->assertEquals($child, $root->children[0]);
 	}
+
+	public function testGetTitle()
+	{
+		$title = 'apples';
+		$root = new exemel\Property($title);
+		$this->assertEquals($title, $root->getTitle());
+	}
 }
 
 class MockProperty extends xml\Property
